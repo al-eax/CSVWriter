@@ -15,6 +15,26 @@ class CSVWriter
             this->columnNum = -1;
             this->valueCount = 0;
         }
+        CSVWriter(int numberOfColums){
+            this->firstRow = true;
+            this->seperator = ";";
+            this->columnNum = numberOfColums;
+            this->valueCount = 0;
+        }
+        CSVWriter(string seperator){
+            this->firstRow = true;
+            this->seperator = seperator;
+            this->columnNum = -1;
+            this->valueCount = 0;
+        }
+        CSVWriter(string seperator, int numberOfColums){
+            this->firstRow = true;
+            this->seperator = seperator;
+            this->columnNum = numberOfColums;
+            this->valueCount = 0;
+            cout << this->seperator << endl;
+        }
+
         template<typename T>
         CSVWriter& add(T str){
             if(this->columnNum > -1){
@@ -29,10 +49,11 @@ class CSVWriter
 
             return *this;
         }
+
         template<typename T>
-        friend CSVWriter& operator<<(CSVWriter & csv, const T& t)
+        CSVWriter& operator<<(const T& t)
         {
-            return csv.add(t);
+            return this->add(t);
         }
 
         string toString(){
@@ -52,6 +73,7 @@ class CSVWriter
             valueCount = 0;
             return *this;
         }
+
         bool writeToFile(string filename){
             return writeToFile(filename,false);
         }
@@ -69,18 +91,21 @@ class CSVWriter
             file.close();
             return file.good();
         }
+
         void enableAutoNewRow(int numberOfColumns){
             this->columnNum = numberOfColumns;
         }
+
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
-        stringstream ss;
+
     private:
         bool firstRow;
         string seperator;
         int columnNum;
         int valueCount;
+        stringstream ss;
 };
 
 #endif // CSVWRITER_H
