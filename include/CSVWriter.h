@@ -56,11 +56,9 @@ class CSVWriter
             return this->add(t);
         }
 
-
-        CSVWriter& operator<<(CSVWriter &csv)
+        void operator+=(CSVWriter &csv)
         {
             this->ss << endl << csv;
-            return *this;
         }
 
         string toString(){
@@ -106,13 +104,13 @@ class CSVWriter
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
-
-    private:
+    protected:
         bool firstRow;
         string seperator;
         int columnNum;
         int valueCount;
         stringstream ss;
+
 };
 
 #endif // CSVWRITER_H

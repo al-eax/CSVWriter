@@ -41,7 +41,7 @@ void test6(){
     csv_a << "this" << "comes" << "from" << "csv_a";
     csv_b << "this" << "is" << "from" << "csv_b";
 
-    csv_b << csv_a;
+    csv_b += csv_a;
     cout << csv_b << endl;
 }
 
