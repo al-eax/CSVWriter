@@ -12,14 +12,14 @@ void test2(){
     CSVWriter csv;
     csv.newRow() << "this" << "is" << "the" << "first" << "row";
     csv.newRow() << "this" << "is" << "the" << "second" << "row";
-    cout << csv << endl <<;
+    cout << csv << endl;
 }
 
 void test3(){
     CSVWriter csv;
     csv.enableAutoNewRow(5);
     csv << "this" << "is" << "the" << "first" << "row" << "this" << "is" << "the" << "second" << "row";
-    cout << csv << endl <<;
+    cout << csv << endl;
 }
 
 void test4(){
