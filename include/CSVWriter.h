@@ -17,15 +17,16 @@ class CSVWriter
         }
         template<typename T>
         CSVWriter& add(T str){
+            if(this->columnNum > -1){
+                if(this->valueCount == this->columnNum ){
+                    this->newRow();
+                }
+            }
             if(valueCount > 0)
                 this->ss << this->seperator;
             this->ss << str;
             this->valueCount++;
-            if(this->columnNum > -1){
-                if(this->valueCount == this->columnNum){
-                    this->newRow();
-                }
-            }
+
             return *this;
         }
         template<typename T>
@@ -43,15 +44,8 @@ class CSVWriter
         }
 
         CSVWriter& newRow(){
-            if(this->columnNum > -1 && autoEmptyFields){
-                for(int i = valueCount; i < this->columnNum; i++)
-                    this->ss << this->seperator;
-            }
-            if(firstRow){
+            if(this->ss.gcount() == 0){
                  ss << endl;
-            }
-            else{
-                firstRow = false;
             }
             valueCount = 0;
             return *this;
@@ -76,9 +70,6 @@ class CSVWriter
         void enableAutoNewRow(int numberOfColumns){
             this->columnNum = numberOfColumns;
         }
-        void enableAutoEmptyFileds(bool autoEmptyFields){
-            this->autoEmptyFields = autoEmptyFields;
-        }
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
@@ -88,7 +79,6 @@ class CSVWriter
         string seperator;
         int columnNum;
         int valueCount;
-        bool autoEmptyFields;
 };
 
 #endif // CSVWRITER_H
