@@ -2,16 +2,39 @@
 #include "include/CSVWriter.h"
 using namespace std;
 
+void test1(){
+    CSVWriter csv;
+    csv << "this" << "is" << "a" << "row";
+    cout << csv << endl << "=====================" << endl;
+}
+
+void test2(){
+    CSVWriter csv;
+    csv.newRow() << "this" << "is" << "the" << "first" << "row";
+    csv.newRow() << "this" << "is" << "the" << "second" << "row";
+    cout << csv << endl << "=====================" << endl;
+}
+
+void test3(){
+    CSVWriter csv;
+    csv.enableAutoNewRow(5);
+    csv << "this" << "is" << "the" << "first" << "row" << "this" << "is" << "the" << "second" << "row";
+    cout << csv << endl << "=====================" << endl;
+}
+
+void test4(){
+    CSVWriter csv;
+    csv.newRow() << "this" << "is" << "the" << "first" << "row";
+    csv.newRow() << "this" << "is" << "the" << "second" << "row";
+    cout << csv.writeToFile("foobar.csv") << endl << "=====================" << endl;
+}
+
+
 int main()
 {
-    CSVWriter csv;
-    csv.enableAutoNewRow(3);
-    csv.enableAutoEmptyFileds(true);
-    csv << 123<<234<<234;
-    csv << 1 ;
-    csv.newRow();
-    csv << 324 << 234;
-    csv.newRow();
-    cout << csv;
+    test1();
+    test2();
+    test3();
+    test4();
     return 0;
 }
