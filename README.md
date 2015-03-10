@@ -4,38 +4,59 @@ Simple c++ csv writer class
 #### write a single row
 ```
 CSVWriter csv;
-csv << "here" << "we" << "have" << 4 << "colums";
-cout << csv
-csv.writeToFile("foobar.csv")
+csv << "this" << "is" << "a" << "row";
+cout << csv << endl;
 ```
-this will create a csv file `foobar.csv` with `here;we;have;4;colums`
+output:
+```
+this;is;a;row
+```
 
 #### write multiple rows
 ```
 CSVWriter csv;
-csv.newRow() << "this" << "is" << "a" << "row";
-csv.newRow() << "an" << "other" << "row" << "here";
-cout << csv;
-csv.writeToFile("foobar.csv");
+csv.newRow() << "this" << "is" << "the" << "first" << "row";
+csv.newRow() << "this" << "is" << "the" << "second" << "row";
+cout << csv << endl;
 ```
-this will create a csv file `foobar.csv` with 
+output
 ```
-this;is;a;row
-an;other;row
+this;is;the;first;row
+this;is;the;second;row
 ```
 #### auto row
 When each row has a fixed number of colums, CSVWriter can add rows automatic. In this example, every row has 4 colums
 ```
 CSVWriter csv;
-csv.enableAutoNewRow(4);
-csv << "this" << "is" << 1 << "row" << "this" << "is" << "another" << "row";
-cout << csv;
+csv.enableAutoNewRow(5);
+csv << "this" << "is" << "the" << "first" << "row" << "this" << "is" << "the" << "second" << "row";
+cout << csv << endl;
+```
+output
+```
+this;is;the;first;row
+this;is;the;second;row
+```
+#### write csv to filesystem
+```
+CSVWriter csv;
+csv.newRow() << "this" << "is" << "the" << "first" << "row";
+csv.newRow() << "this" << "is" << "the" << "second" << "row";
 csv.writeToFile("foobar.csv");
 ```
-this will create a csv file `foobar.csv` with
+#### append csv to existing file
 ```
-this;is;1;row
-this;is;another;row
+CSVWriter csv;
+csv << "append" << "this" << "row" << "please" << ":)";
+cout << csv.writeToFile("foobar.csv",true) << endl;
 ```
-#### append csv file
-`csv.writeToFile("foobar.csv",true);` will append the the content to an existing file named `foobar.csv`
+#### change seperator
+```
+CSVWriter csv(",");
+csv << "this" << "is" << "a" << "row";
+cout << csv << endl;
+```
+output:
+```
+this,is,a,row
+```
