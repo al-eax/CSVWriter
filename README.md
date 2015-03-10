@@ -37,3 +37,5 @@ this will create a csv file `foobar.csv` with
 this;is;1;row
 this;is;another;row
 ```
+#### append csv file
+`csv.writeToFile("foobar.csv",true);` will append the the content to an existing file named `foobar.csv`
