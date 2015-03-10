@@ -44,8 +44,10 @@ class CSVWriter
         }
 
         CSVWriter& newRow(){
-            if(this->ss.gcount() == 0){
+            if(!this->firstRow || this->columnNum > -1){
                  ss << endl;
+            }else{
+                this->firstRow = false;
             }
             valueCount = 0;
             return *this;
