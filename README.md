@@ -74,3 +74,22 @@ output
 this;is;from;csv_b
 this;comes;from;csv_a
 ```
+#### supported datatypes
+CSVWriter uses a `stringstream` so serilize values. Each datatype supported by `<<` operator from `stringstresm` can be used.
+```
+char c = 'c';
+bool b = false;
+short s = 6000;
+int i = 300000;
+float f = 3.14159;
+double d = 4.85875e-270;
+string str = "hello world";
+char c_str[] = "whats up";
+CSVWriter csv;
+csv << c << b << s << i << f << d << str << c_str ;
+cout << csv;
+```
+output
+```
+c;0;6000;300000;3.14159;4.85875e-270;hello world;whats up
+```
