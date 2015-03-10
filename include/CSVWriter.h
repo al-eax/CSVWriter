@@ -56,6 +56,13 @@ class CSVWriter
             return this->add(t);
         }
 
+
+        CSVWriter& operator<<(CSVWriter &csv)
+        {
+            this->ss << endl << csv;
+            return *this;
+        }
+
         string toString(){
             return ss.str();
         }
