@@ -66,11 +66,11 @@ CSVWriter csv_a;
 CSVWriter csv_b;
 csv_a << "this" << "comes" << "from" << "csv_a";
 csv_b << "this" << "is" << "from" << "csv_b";
-csv_b << csv_a;
+csv_b += csv_a;
 cout << csv_b << endl;
 ```
 output
 ```
-this;is;from;csv_B
-this;comes;from;csv_A
+this;is;from;csv_b
+this;comes;from;csv_a
 ```
