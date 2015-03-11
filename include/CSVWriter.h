@@ -49,12 +49,15 @@ class CSVWriter
         CSVWriter& add(string str){
             //if " character was found, escape it
             size_t position = str.find("\"",0);
+            bool foundQuotationMarks = position != string::npos;
             while(position != string::npos){
                 str.insert(position,"\"");
                 position = str.find("\"",position + 2);
             }
-            //if seperator was found, excape the element with "
-            if(str.find(this->seperator) != string::npos){
+            if(foundQuotationMarks){
+                str = "\"" + str + "\"";
+            }else if(str.find(this->seperator) != string::npos){
+                //if seperator was found and string was not escapted before, surround string with "
                 str = "\"" + str + "\"";
             }
             return this->add<string>(str);
