@@ -62,7 +62,7 @@ void test7(){
 
 void test8(){
     CSVWriter csv;
-    csv << "excape;me;please";
+    csv << "escape;me;please";
     cout << csv << endl;
 }
 
