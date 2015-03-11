@@ -15,18 +15,21 @@ class CSVWriter
             this->columnNum = -1;
             this->valueCount = 0;
         }
+
         CSVWriter(int numberOfColums){
             this->firstRow = true;
             this->seperator = ";";
             this->columnNum = numberOfColums;
             this->valueCount = 0;
         }
+
         CSVWriter(string seperator){
             this->firstRow = true;
             this->seperator = seperator;
             this->columnNum = -1;
             this->valueCount = 0;
         }
+
         CSVWriter(string seperator, int numberOfColums){
             this->firstRow = true;
             this->seperator = seperator;
@@ -35,9 +38,32 @@ class CSVWriter
             cout << this->seperator << endl;
         }
 
+        CSVWriter& add(const char *str){
+            return this->add(string(str));
+        }
+
+        CSVWriter& add(char *str){
+            return this->add(string(str));
+        }
+
+        CSVWriter& add(string str){
+            //if " character was found, escape it
+            size_t position = str.find("\"",0);
+            while(position != string::npos){
+                str.insert(position,"\"");
+                position = str.find("\"",position + 2);
+            }
+            //if seperator was found, excape the element with "
+            if(str.find(this->seperator) != string::npos){
+                str = "\"" + str + "\"";
+            }
+            return this->add<string>(str);
+        }
+
         template<typename T>
         CSVWriter& add(T str){
             if(this->columnNum > -1){
+                //if autoNewRow is enabled, check if we need a line break
                 if(this->valueCount == this->columnNum ){
                     this->newRow();
                 }
@@ -51,13 +77,11 @@ class CSVWriter
         }
 
         template<typename T>
-        CSVWriter& operator<<(const T& t)
-        {
+        CSVWriter& operator<<(const T& t){
             return this->add(t);
         }
 
-        void operator+=(CSVWriter &csv)
-        {
+        void operator+=(CSVWriter &csv){
             this->ss << endl << csv;
         }
 
@@ -71,8 +95,9 @@ class CSVWriter
 
         CSVWriter& newRow(){
             if(!this->firstRow || this->columnNum > -1){
-                 ss << endl;
+                ss << endl;
             }else{
+                //if the row is the first row, do not insert a new line
                 this->firstRow = false;
             }
             valueCount = 0;
@@ -82,6 +107,7 @@ class CSVWriter
         bool writeToFile(string filename){
             return writeToFile(filename,false);
         }
+
         bool writeToFile(string filename, bool append){
             ofstream file;
             if(append)
