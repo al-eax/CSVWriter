@@ -45,6 +45,32 @@ void test6(){
     cout << csv_b << endl;
 }
 
+
+void test7(){
+    char c = 'c';
+    bool b = false;
+    short s = 6000;
+    int i = 300000;
+    float f = 3.14159;
+    double d = 4.85875e-270;
+    string str = "hello world";
+    char c_str[] = "whats up";
+    CSVWriter csv;
+    csv << c << b << s << i << f << d << str << c_str ;
+    cout << csv << endl;
+}
+
+void test8(){
+    CSVWriter csv;
+    csv << "excape;me;please";
+    cout << csv << endl;
+}
+
+void test9(){
+    CSVWriter csv;
+    csv << "escape\"me\"please\"\":)";
+    cout << csv << endl;
+}
 int main()
 {
     test1();
@@ -53,5 +79,9 @@ int main()
     test4();
     test5();
     test6();
+    test7();
+    test8();
+    test9();
     return 0;
+
 }
