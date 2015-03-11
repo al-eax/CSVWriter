@@ -97,7 +97,7 @@ As you can see, boolean values are serilized to `0` for `false` and `1` for `tru
 
 #### escaping
 CSVWriter can escape your seperator
-```
+```c++
 CSVWriter csv;
 csv << "escape;me;please";
 cout << csv << endl;
@@ -107,7 +107,7 @@ output
 "escape;me;please"
 ```
 CSVWriter can also escape quotation marks
-```
+```c++
 CSVWriter csv;
 csv << "escape\"me\"please\"\":)";
 cout << csv << endl;
