@@ -94,3 +94,25 @@ output
 c;0;6000;300000;3.14159;4.85875e-270;hello world;whats up
 ```
 As you can see, boolean values are serilized to `0` for `false` and `1` for `true`.
+
+#### escaping
+CSVWriter can escape your seperator
+```
+CSVWriter csv;
+csv << "escape;me;please";
+cout << csv << endl;
+```
+output
+```
+"escape;me;please"
+```
+CSVWriter can also escape quotation marks
+```
+CSVWriter csv;
+csv << "escape\"me\"please\"\":)";
+cout << csv << endl;
+```
+output
+```
+escape""me""please"""":)
+```
