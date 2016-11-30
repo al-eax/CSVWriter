@@ -116,4 +116,3 @@ output
 ```
 "escape""me""please"""":)"
 ```
-**NOTE**: only a these data types can be escapted: `string,char,char*,const char*,char[],const char[]`
