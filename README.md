@@ -22,7 +22,7 @@ csv.newRow() << "this" << "is" << "the" << "first" << "row";
 csv.newRow() << "this" << "is" << "the" << "second" << "row";
 cout << csv << endl;
 ```
-output
+output:
 ```
 this;is;the;first;row
 this;is;the;second;row
@@ -36,7 +36,7 @@ csv.enableAutoNewRow(5);
 csv << "this" << "is" << "the" << "first" << "row" << "this" << "is" << "the" << "second" << "row";
 cout << csv << endl;
 ```
-output
+output:
 ```
 this;is;the;first;row
 this;is;the;second;row
@@ -73,7 +73,7 @@ csv_b << "this" << "is" << "from" << "csv_b";
 csv_b += csv_a;
 cout << csv_b << endl;
 ```
-output
+output:
 ```
 this;is;from;csv_b
 this;comes;from;csv_a
@@ -93,7 +93,7 @@ CSVWriter csv;
 csv << c << b << s << i << f << d << str << c_str ;
 cout << csv;
 ```
-output
+output:
 ```
 c;0;6000;300000;3.14159;4.85875e-270;hello world;whats up
 ```
@@ -106,7 +106,7 @@ CSVWriter csv;
 csv << "escape;me;please";
 cout << csv << endl;
 ```
-output
+output:
 ```
 "escape;me;please"
 ```
@@ -116,7 +116,7 @@ CSVWriter csv;
 csv << "escape\"me\"please\"\":)";
 cout << csv << endl;
 ```
-output
+output:
 ```
 "escape""me""please"""":)"
 ```
