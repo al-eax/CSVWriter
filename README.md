@@ -1,6 +1,9 @@
 # CSVWriter
 Simple c++ csv writer class.
 ## How to use ?
+
+just c&p or add the CSVWriter-h file to your project.
+
 #### write a single row
 ```c++
 CSVWriter csv;
@@ -25,7 +28,8 @@ this;is;the;first;row
 this;is;the;second;row
 ```
 #### auto row
-When each row has a fixed number of colums, CSVWriter can add rows automatic. In this example, every row has 4 colums
+When each row has a fixed number of colums, CSVWriter can add rows automatically. 
+In this example, each row has 4 colums:
 ```c++
 CSVWriter csv;
 csv.enableAutoNewRow(5);
@@ -48,7 +52,7 @@ csv.writeToFile("foobar.csv");
 ```c++
 CSVWriter csv;
 csv << "append" << "this" << "row" << "please" << ":)";
-cout << csv.writeToFile("foobar.csv",true) << endl;
+csv.writeToFile("foobar.csv",true);
 ```
 #### change seperator
 ```
@@ -75,7 +79,7 @@ this;is;from;csv_b
 this;comes;from;csv_a
 ```
 #### supported datatypes
-CSVWriter uses a `stringstream` so serilize values. Each datatype supported by `<<` operator from `stringstresm` can be used.
+CSVWriter uses a `stringstream` to serilize values. Each datatype supported by `<<` operator from `stringstresm` can be used:
 ```c++
 char c = 'c';
 bool b = false;
