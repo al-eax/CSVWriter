@@ -1,5 +1,14 @@
 #ifndef CSVWRITER_H
 #define CSVWRITER_H
+
+/***********************************************************************************************
+ *
+ *    Classe qui permet de gérer l'écriture sous le format CSV
+ *    Licence : BSD 2-Clause "Simplified" License
+ *    Url : https://github.com/jojo58fr/CSVWriter
+ *
+ *********************************************************************************************/
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -9,11 +18,18 @@ using namespace std;
 class CSVWriter
 {
     public:
+        
+        /*
+        * Déclarations des différents constructeurs
+        */
         CSVWriter(){
             this->firstRow = true;
             this->seperator = ";";
             this->columnNum = -1;
             this->valueCount = 0;
+
+            //Clear Stream
+            ss.str(std::string());
         }
 
         CSVWriter(int numberOfColums){
@@ -21,6 +37,9 @@ class CSVWriter
             this->seperator = ";";
             this->columnNum = numberOfColums;
             this->valueCount = 0;
+
+            //Clear Stream
+            ss.str(std::string());
         }
 
         CSVWriter(string seperator){
@@ -28,6 +47,9 @@ class CSVWriter
             this->seperator = seperator;
             this->columnNum = -1;
             this->valueCount = 0;
+
+            //Clear Stream
+            ss.str(std::string());
         }
 
         CSVWriter(string seperator, int numberOfColums){
@@ -36,8 +58,14 @@ class CSVWriter
             this->columnNum = numberOfColums;
             this->valueCount = 0;
             cout << this->seperator << endl;
+
+            //Clear Stream
+            ss.str(std::string());
         }
 
+        /*
+        * Ajout de texte par l'intermédiaire d'une fonction
+        */
         CSVWriter& add(const char *str){
             return this->add(string(str));
         }
@@ -84,18 +112,27 @@ class CSVWriter
             return this->add(t);
         }
 
+        /*
+        * Ajout de texte par l'intermédiaire d'opérateurs
+        */
         void operator+=(CSVWriter &csv){
             this->ss << endl << csv;
-        }
-
-        string toString(){
-            return ss.str();
         }
 
         friend ostream& operator<<(std::ostream& os, CSVWriter & csv){
             return os << csv.toString();
         }
 
+        /*
+        * Retour du format CSV sous forme de chaine de caractère
+        */
+        string toString(){
+            return ss.str();
+        }
+
+        /*
+        * Préparation d'une nouvelle ligne 
+        */
         CSVWriter& newRow(){
             if(!this->firstRow || this->columnNum > -1){
                 ss << endl;
@@ -107,6 +144,9 @@ class CSVWriter
             return *this;
         }
 
+        /*
+        * Gestion de l'écriture dans un document 
+        */
         bool writeToFile(string filename){
             return writeToFile(filename,false);
         }
@@ -126,19 +166,23 @@ class CSVWriter
             return file.good();
         }
 
+        /*
+        * Gestion d'uns système de colonnes automatique par rapport à un nombre prédéfini 
+        */
         void enableAutoNewRow(int numberOfColumns){
             this->columnNum = numberOfColumns;
         }
 
+        // Désactivation du système de colonnes automatique
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
     protected:
-        bool firstRow;
-        string seperator;
-        int columnNum;
-        int valueCount;
-        stringstream ss;
+        bool firstRow; //Si la première ligne
+        string seperator; //Gestion du séparateur
+        int columnNum; //Numéro de colomne
+        int valueCount; //Nombre de valeurs renseigné CAD nombre de colomnes renseigné actuel
+        stringstream ss; //Flux d'écriture
 
 };
 
