@@ -1,7 +1,7 @@
 # CSVWriter
 [:computer: Downloading & Release notes](https://github.com/jojo58fr/CSVWriter/releases)   |   [:pushpin: Documentation](https://github.com/jojo58fr/CSVWriter/wiki) | [:warning: Known issues](#known-issues) | [:bug: Report bugs](https://github.com/jojo58fr/CSVWriter/issues)
 
-Simple c++ csv writer class.
+> Simple c++ csv writer class.
 ## How to use ?
 
 just c&p or add the CSVWriter-h file to your project.
