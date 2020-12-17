@@ -2,7 +2,7 @@
 Simple c++ csv writer class.
 ## How to use ?
 
-just c&p or add the CSVWriter-h file to your project.
+just c&p or add the CSVWriter.h file to your project.
 
 #### write a single row
 ```c++
