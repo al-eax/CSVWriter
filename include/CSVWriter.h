@@ -144,6 +144,13 @@ class CSVWriter
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
+        void resetContent(){
+             const static std::stringstream initial;
+
+            ss.str(std::string());
+            ss.clear();
+            ss.copyfmt(initial)
+        }
     protected:
         std::string seperator;
         int columnNum;
