@@ -144,6 +144,17 @@ class CSVWriter
         void disableAutoNewRow(){
             this->columnNum = -1;
         }
+       //you can use this reset method in destructor if you gonna use it in heap mem.
+        void resetContent(){
+             const static std::stringstream initial;
+
+            ss.str(std::string());
+            ss.clear();
+            ss.copyfmt(initial);
+        }
+      ~CSVWriter(){
+          resetContent();
+       }
     protected:
         std::string seperator;
         int columnNum;
