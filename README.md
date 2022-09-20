@@ -29,7 +29,7 @@ this;is;the;second;row
 ```
 #### auto row
 When each row has a fixed number of colums, CSVWriter can add rows automatically. 
-In this example, each row has 4 colums:
+In this example, each row has 5 colums:
 ```c++
 CSVWriter csv;
 csv.enableAutoNewRow(5);
