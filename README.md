@@ -28,8 +28,8 @@ this;is;the;first;row
 this;is;the;second;row
 ```
 #### auto row
-When each row has a fixed number of colums, CSVWriter can add rows automatically. 
-In this example, each row has 5 colums:
+When each row has a fixed number of columns, CSVWriter can add rows automatically. 
+In this example, each row has 5 columns:
 ```c++
 CSVWriter csv;
 csv.enableAutoNewRow(5);
@@ -54,7 +54,7 @@ CSVWriter csv;
 csv << "append" << "this" << "row" << "please" << ":)";
 csv.writeToFile("foobar.csv",true);
 ```
-#### change seperator
+#### change separator
 ```
 CSVWriter csv(",");
 csv << "this" << "is" << "a" << "row";
@@ -79,7 +79,7 @@ this;is;from;csv_b
 this;comes;from;csv_a
 ```
 #### supported datatypes
-CSVWriter uses a `stringstream` to serilize values. Each datatype supported by `<<` operator from `stringstresm` can be used:
+CSVWriter uses a `stringstream` to serialize values. Each datatype supported by `<<` operator from `stringstresm` can be used:
 ```c++
 char c = 'c';
 bool b = false;
@@ -97,10 +97,10 @@ output:
 ```
 c;0;6000;300000;3.14159;4.85875e-270;hello world;whats up
 ```
-As you can see, boolean values are serilized to `0` for `false` and `1` for `true`.
+As you can see, boolean values are serialized to `0` for `false` and `1` for `true`.
 
 #### escaping
-CSVWriter can escape your seperator
+CSVWriter can escape your separator
 ```c++
 CSVWriter csv;
 csv << "escape;me;please";

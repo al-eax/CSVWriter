@@ -56,7 +56,7 @@ class CSVWriter
             if(foundQuotationMarks){
                 str = "\"" + str + "\"";
             }else if(str.find(this->seperator) != std::string::npos){
-                //if seperator was found and string was not escapted before, surround string with "
+                //if separator was found and string was not escaped before, surround string with "
                 str = "\"" + str + "\"";
             }
             return this->add<std::string>(str);
@@ -120,7 +120,7 @@ class CSVWriter
                 if (fin.is_open()) {
                     fin.seekg(-1, std::ios_base::end); //go to end of file
                     int lastChar = fin.peek();
-                    if (lastChar != -1 && lastChar != '\n') //if file is not empry and last char is not new line char
+                    if (lastChar != -1 && lastChar != '\n') //if file is not empty and last char is not new line char
                         appendNewLine = true;
                 }
                 file.open(filename.c_str(), std::ios::out | std::ios::app);
